@@ -92,6 +92,8 @@ public class ProgramValues {
 		ProgramValues PV = new ProgramValues();
 		RunItems RI = PV.new RunItems(); 
 		
+		BasicUtilHelper BUH = new BasicUtilHelper();
+		
 		NameValuePair[] params = new BasicNameValuePair[] {
 		        new BasicNameValuePair("loggedInas", username),
 		        new BasicNameValuePair("application", Application),
@@ -99,7 +101,7 @@ public class ProgramValues {
 		
 		HttpGet getRequest = new HttpGet();
 		try {
-			getRequest = new HttpGet(BuildURL("/api/UserTestingPrefForRunItem", params));
+			getRequest = new HttpGet(BUH.BuildURL("/api/UserTestingPrefForRunItem", params));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -124,6 +126,8 @@ public class ProgramValues {
 	{
 		String URL = "";
 		String eenv = "";
+		
+		BasicUtilHelper BUH = new BasicUtilHelper();
 
 		if(RI.Orgs_Env_Shrt == null || RI.Orgs_Env_Shrt == "")
 		{
@@ -147,7 +151,7 @@ public class ProgramValues {
  		
  		HttpGet getRequest = new HttpGet();
  		try {
- 			getRequest = new HttpGet(BuildURL("api/URL", params));
+ 			getRequest = new HttpGet(BUH.BuildURL("api/URL", params));
  		} catch (ParseException e) {
  			e.printStackTrace();
  		}
@@ -213,7 +217,7 @@ public class ProgramValues {
 	{
 		  	 ProgramValues PV = new ProgramValues();
 	         ScriptRunner sr = PV.new ScriptRunner();
-		
+		     BasicUtilHelper BUH = new BasicUtilHelper();
 
 	         NameValuePair[] params = new BasicNameValuePair[] {
 	 		        new BasicNameValuePair("Client", ClientName),
@@ -223,7 +227,7 @@ public class ProgramValues {
 	 		
 	 		HttpGet getRequest = new HttpGet();
 	 		try {
-	 			getRequest = new HttpGet(BuildURL("api/ScriptRunner", params));
+	 			getRequest = new HttpGet(BUH.BuildURL("api/ScriptRunner", params));
 	 		} catch (ParseException e) {
 	 			e.printStackTrace();
 	 		}
@@ -246,37 +250,7 @@ public class ProgramValues {
 	         
 	         return sr;
 	}
-	public static URI BuildURL(String Path, NameValuePair[] params) throws ParseException
-	{		
-	URI uri = null;
-	
-	List<org.apache.http.NameValuePair> ListOFParam = new ArrayList<org.apache.http.NameValuePair>();
-	
-	if(params.length >= 1)
-	{
-		 for(org.apache.http.NameValuePair I : params)
-		 {
-			 ListOFParam.add(new BasicNameValuePair(I.getName(), I.getValue()));
-		 }
-	}
-	
-	try {
-		uri = new URIBuilder()
-		        .setScheme("http")
-		        .setHost(conFIG.URL)
-		        .setPath(Path)
-		        
-		        .setParameters(ListOFParam)
-		        .build();
-	} catch (URISyntaxException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-	return uri;
 
-	}
-	
 	
 	
 	public static void main(String[] args) throws IllegalStateException, IOException {
