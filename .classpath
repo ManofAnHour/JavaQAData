@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="QATestingObjects/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/kconners/Desktop/JavaLearning/commons-logging-1.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kconners/Desktop/JavaLearning/httpclient-4.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kconners/Desktop/JavaLearning/httpcore-4.4.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kconners/Desktop/JavaLearning/java-json.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kconners/Desktop/JavaLearning/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kconners/Downloads/gson-2.6.2.jar"/>
+	<classpathentry kind="output" path="QATestingObjects/bin"/>
+</classpath>
