@@ -45,7 +45,10 @@ public class QACompleteHelper {
 
 	 		
 	 		BufferedReader br = new BufferedReader(
-	                          new InputStreamReader((response.getEntity().getContent())));
+                    new InputStreamReader((response.getEntity().getContent())));
+	       
+	
+            TestRunID = gson.fromJson(br.readLine(), int.class);
 			
 			return TestRunID;
 	}

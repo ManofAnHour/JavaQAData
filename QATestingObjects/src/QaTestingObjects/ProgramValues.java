@@ -36,20 +36,19 @@ public class ProgramValues {
 	
 	public class RunItems
 	{
-        public String Client_Long = "";
-        public String Org_BeingTested = "";
-        public String Env_Shrt = "";
-        public String username = "";
-        public String Orgs_Env_Shrt = "";
+        public String Client_Name = "";
+        public String Org_Name = "";
+        public String Env_Short = "";
+        public String UserName = "";
+        public String OrgsEnvShortName = "";
         public String OrgsEnv_LongName = "";
         public String Release = "";
         public String Build = "";
         public String Application = "";
-        public String Itereation = "";
         public String LWVersion = "";
         public String LWBuild = "";
-        public UUID LW_Version = new UUID(0L, 0L);
-        public UUID LW_Build =  new UUID(0L, 0L);
+        public UUID LWVersion_IDNUM = new UUID(0L, 0L);
+        public UUID LWBuild_IDNUM =  new UUID(0L, 0L);
         
 	}
     public class urlRoot
@@ -129,23 +128,23 @@ public class ProgramValues {
 		
 		BasicUtilHelper BUH = new BasicUtilHelper();
 
-		if(RI.Orgs_Env_Shrt == null || RI.Orgs_Env_Shrt == "")
+		if(RI.OrgsEnvShortName == null || RI.OrgsEnvShortName == "")
 		{
-			eenv = RI.Env_Shrt;
+			eenv = RI.Env_Short;
 		}
 		else
 		{
-            if (RI.Orgs_Env_Shrt == RI.Env_Shrt) eenv = RI.Env_Shrt;
-            else if (RI.Orgs_Env_Shrt != RI.Env_Shrt) eenv = RI.Orgs_Env_Shrt;
+            if (RI.OrgsEnvShortName == RI.Env_Short) eenv = RI.Env_Short;
+            else if (RI.OrgsEnvShortName != RI.Env_Short) eenv = RI.OrgsEnvShortName;
 		}
          
          ProgramValues PV = new ProgramValues();
          url uRL = PV.new url();
 
          NameValuePair[] params = new BasicNameValuePair[] {
- 		        new BasicNameValuePair("client", RI.Org_BeingTested),
+ 		        new BasicNameValuePair("client", RI.Org_Name),
  		        new BasicNameValuePair("program", "All"),
- 		        new BasicNameValuePair("environment", RI.Orgs_Env_Shrt),
+ 		        new BasicNameValuePair("environment", RI.OrgsEnvShortName),
  		        new BasicNameValuePair("application", RI.Application),
  		};
  		
@@ -259,11 +258,14 @@ public class ProgramValues {
 		RunItems RI = PV.new RunItems(); 
 		ScriptRunner SR = PV.new ScriptRunner();
 		
-		SR = PV.GetScriptRunnerInfo("Wendys","GetRewardCatalog");
+		SR = PV.GetScriptRunnerInfo("LoyaltyWare","StartUp");
 		RI =  GetTestingPreferences(SR.UserName, "API");
 		
 		String URL = PV.getURL(RI);
 		System.out.println("Output from Server ...."+URL+" \n");
 		
+		QACompleteHelper QACH = new QACompleteHelper();
+		int RunID = QACH.StartTesting(RI, SR.TestSetTitle);
+		System.out.println("TestRunID ...."+RunID+" \n");
 	}
 }
