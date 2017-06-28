@@ -258,14 +258,19 @@ public class ProgramValues {
 		RunItems RI = PV.new RunItems(); 
 		ScriptRunner SR = PV.new ScriptRunner();
 		
-		SR = PV.GetScriptRunnerInfo("LoyaltyWare","StartUp");
-		RI =  GetTestingPreferences(SR.UserName, "API");
+		SR = PV.GetScriptRunnerInfo("Kelloggs","CS Portal");
+		RI =  GetTestingPreferences(SR.UserName, "CS");
 		
 		String URL = PV.getURL(RI);
 		System.out.println("Output from Server ...."+URL+" \n");
 		
 		QACompleteHelper QACH = new QACompleteHelper();
 		int RunID = QACH.StartTesting(RI, SR.TestSetTitle);
-		System.out.println("TestRunID ...."+RunID+" \n");
+		
+		boolean FirstMethod = QACH.CheckSoftFail(RunID, "A00001_ValidLogin", "Passed");
+		System.out.println("This is the softfail as Passed Status ...."+FirstMethod+" \n");
+		
+		boolean HasPassed = QACH.CheckSoftFail(RunID, "A00002_NonExistingLogin", "Passed");
+		System.out.println("This is the softfail as Passed Status ...."+HasPassed+" \n");
 	}
 }

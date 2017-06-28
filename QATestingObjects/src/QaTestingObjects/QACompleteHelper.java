@@ -52,5 +52,37 @@ public class QACompleteHelper {
 			
 			return TestRunID;
 	}
+	public boolean CheckSoftFail(int TestRunID, String MethodName, String Status) throws ClientProtocolException, IOException
+	{
+		boolean ItHasFailed = false;
+		
+		BasicUtilHelper BUH = new BasicUtilHelper();
+		
+		NameValuePair[] params = new BasicNameValuePair[] {
+ 		        new BasicNameValuePair("MethodName", MethodName),
+ 		        new BasicNameValuePair("Status", Status)
+ 		      
+ 		        
+ 		};
+ 		
+ 		HttpGet getRequest = new HttpGet();
+ 		try {
+ 			getRequest = new HttpGet(BUH.BuildURL("api/QAComplete/SoftFail/"+TestRunID, params));
+ 		} catch (ParseException e) {
+ 			e.printStackTrace();
+ 		}
+ 		Gson gson = new Gson();
+ 		
+ 		HttpClient httpClient =  HttpClientBuilder.create().build();;
+ 		HttpResponse response = httpClient.execute(getRequest);
 
+ 		
+ 		BufferedReader br = new BufferedReader(
+                new InputStreamReader((response.getEntity().getContent())));
+       
+
+ 		ItHasFailed = gson.fromJson(br.readLine(), boolean.class);
+		
+		return ItHasFailed;
+	}
 }
