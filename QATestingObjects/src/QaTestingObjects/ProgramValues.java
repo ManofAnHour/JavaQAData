@@ -86,7 +86,7 @@ public class ProgramValues {
 	public class URLForUse{
 		public List<org.apache.http.NameValuePair> listofparam;
 	}
-	public static RunItems GetTestingPreferences(String username, String Application) throws IllegalStateException, IOException
+	public RunItems GetTestingPreferences(String username, String Application) throws IllegalStateException, IOException
 	{
 		ProgramValues PV = new ProgramValues();
 		RunItems RI = PV.new RunItems(); 
@@ -147,7 +147,7 @@ public class ProgramValues {
  		        new BasicNameValuePair("environment", RI.OrgsEnvShortName),
  		        new BasicNameValuePair("application", RI.Application),
  		};
- 		
+ 
  		HttpGet getRequest = new HttpGet();
  		try {
  			getRequest = new HttpGet(BUH.BuildURL("api/URL", params));
@@ -258,19 +258,18 @@ public class ProgramValues {
 		RunItems RI = PV.new RunItems(); 
 		ScriptRunner SR = PV.new ScriptRunner();
 		
-		SR = PV.GetScriptRunnerInfo("Kelloggs","CS Portal");
-		RI =  GetTestingPreferences(SR.UserName, "CS");
+		RI = PV.GetTestingPreferences(SR.UserName, "API");
 		
 		String URL = PV.getURL(RI);
-		System.out.println("Output from Server ...."+URL+" \n");
+		System.out.println("Output from Server ...."+URL+" ggg\n");
 		
 		QACompleteHelper QACH = new QACompleteHelper();
 		int RunID = QACH.StartTesting(RI, SR.TestSetTitle);
+		System.out.println("Output from Server ...."+RunID+" ggg\n");
+		//boolean FirstMethod = QACH.CheckSoftFail(RunID, "A00001_ValidLogin", "Passed");
+		//System.out.println("This is the softfail as Passed Status ...."+FirstMethod+" \n");
 		
-		boolean FirstMethod = QACH.CheckSoftFail(RunID, "A00001_ValidLogin", "Passed");
-		System.out.println("This is the softfail as Passed Status ...."+FirstMethod+" \n");
-		
-		boolean HasPassed = QACH.CheckSoftFail(RunID, "A00002_NonExistingLogin", "Passed");
-		System.out.println("This is the softfail as Passed Status ...."+HasPassed+" \n");
+		//boolean HasPassed = QACH.CheckSoftFail(RunID, "A00002_NonExistingLogin", "Passed");
+		//System.out.println("This is the softfail as Passed Status ...."+HasPassed+" \n");
 	}
 }
