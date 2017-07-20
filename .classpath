@@ -8,5 +8,7 @@
 	<classpathentry kind="lib" path="C:/Users/kconners/Desktop/JavaLearning/java-json.jar"/>
 	<classpathentry kind="lib" path="C:/Users/kconners/Desktop/JavaLearning/json-simple-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/kconners/Downloads/gson-2.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kconners/Desktop/LW4540LWIntgr-Java/lib/brierleyclientproxy.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kconners/Desktop/LW4540LWIntgr-Java/lib/joda-time-2.0.jar"/>
 	<classpathentry kind="output" path="QATestingObjects/bin"/>
 </classpath>
