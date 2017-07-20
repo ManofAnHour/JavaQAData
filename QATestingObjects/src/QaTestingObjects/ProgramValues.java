@@ -258,6 +258,7 @@ public class ProgramValues {
 		RunItems RI = PV.new RunItems(); 
 		ScriptRunner SR = PV.new ScriptRunner();
 		
+		SR = PV.GetScriptRunnerInfo("LW","DoNotUse");
 		RI = PV.GetTestingPreferences(SR.UserName, "API");
 		
 		String URL = PV.getURL(RI);
